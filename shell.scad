@@ -1,5 +1,5 @@
 //connector-board
-module connectorBoard(height=4){
+module connectorBoard(height=6){
     $fn=100;
     difference(){ 
         cube([30,20,height]);
@@ -9,7 +9,7 @@ module connectorBoard(height=4){
 }
 
 //io-board
-module ioBoard(height=4){
+module ioBoard(height=6){
     $fn=100;
     difference(){
         cube([35,42,height]);
@@ -17,11 +17,11 @@ module ioBoard(height=4){
         translate([35-3.3,3.3,-0.5]) cylinder(height+1,1.1,1.1);
         translate([3.3,42-3.3,-0.5]) cylinder(height+1,1.1,1.1);
         translate([35-3.3,42-3.3,-0.5]) cylinder(height+1,1.1,1.1);
-    }
+    }   
 }
 
 //Mainboard
-module mainBoard(height=8){
+module mainBoard(height=12){
     $fn=100;
     difference(){
         cube([35,52,height]);
@@ -37,12 +37,59 @@ module bottomShell(){
     length=64;
     width=38;
     $fn=100;
-    translate([1,1,0]) hull(){
-        cylinder(1,1,1);
-        translate([width-2,0,0]) cylinder(1,1,1);
-        translate([0,length-2,0]) cylinder(1,1,1);
-        translate([width-2,length-2,0]) cylinder(1,1,1);
+    difference(){
+        translate([1,1,0]) hull(){
+            cylinder(1,1,1);
+            translate([width-2,0,0]) cylinder(1,1,1);
+            translate([0,length-2,0]) cylinder(1,1,1);
+            translate([width-2,length-2,0]) cylinder(1,1,1);
+        }
+        translate([9,length-42.65,-0.1]) cube([20,10,1.2]);
+        
+        //screw holes
+        translate([2.05,length-2.05,-0.3]) cylinder(1.4,1.1,2);
+        translate([2.05,2.05,-0.3]) cylinder(1.4,1.1,2);
+        translate([width-2.05,2.05,-0.3]) cylinder(1.4,1.1,2);
+        translate([width-2.05,length-2.05,-0.3]) cylinder(1.4,1.1,2);
     }
+    
+    translate([width/2,length-42.65,1]) moduleConnection();
+}
+
+module moduleSlot(){
+    cube([5,40.65,2]);
+    //outerbarrier
+    translate([3.13,0,2]) difference(){
+        cube([1.87,40.65,2.1]);
+        //first slot
+        translate([0,3.25,0]){
+            cube([1.02,2.86,2.1]);
+            cube([1.02,7.7,1.27]);
+            translate([0,2.86,1.57]) rotate([225,0,0]) cube([1.02,0.5,0.5]);
+        }
+        
+        //second slot
+        translate([0,23.25,0]){
+            cube([1.02,2.86,2.1]);
+            cube([1.02,7.7,1.27]);
+            translate([0,2.86,1.57]) rotate([225,0,0]) cube([1.02,0.5,0.5]);
+        }
+    }
+    
+    //innerbarrier
+    translate([0,0,2]){
+        difference(){
+            cube([1.28,40.65,2.1]);
+            translate([1.28,0,0.82]) rotate([0,-45,0]) cube([1,40.65,2]);
+        }
+        translate([0,0.9,0.82]) cube([1.28,1.47,1.28]);
+    }
+}
+
+module moduleConnection(){
+    translate([-15,40.65,0]) cube([30,2,4.1]);
+    mirror([1,0,0]) translate([10,0,0]) moduleSlot();
+    translate([10,0,0]) moduleSlot();
 }
 
 //carrierShell
@@ -51,10 +98,10 @@ module carrierShell(){
     width=38;
     $fn=100;
     translate([1,1,0]) hull(){
-        cylinder(2,1,1);
-        translate([width-2,0,0]) cylinder(2,1,1);
-        translate([0,length-2,0]) cylinder(2,1,1);
-        translate([width-2,length-2,0]) cylinder(2,1,1);
+        cylinder(1,1,1);
+        translate([width-2,0,0]) cylinder(1,1,1);
+        translate([0,length-2,0]) cylinder(1,1,1);
+        translate([width-2,length-2,0]) cylinder(1,1,1);
     }
 }
 
@@ -80,10 +127,10 @@ module topShell(height=25){
         
         //inner edge for the bottom shell and the carrier shell
         translate([2,2,-0.2]) hull(){
-            cylinder(3.2,1,1);
-            translate([width-4,0,0]) cylinder(3.2,1,1);
-            translate([0,length-4,0]) cylinder(3.2,1,1);
-            translate([width-4,length-4,0]) cylinder(3.2,1,1);
+            cylinder(2.2,1.2,1.2);
+            translate([width-4,0,0]) cylinder(2.2,1.2,1.2);
+            translate([0,length-4,0]) cylinder(2.2,1.2,1.2);
+            translate([width-4,length-4,0]) cylinder(2.2,1.2,1.2);
         }
     }
 }
@@ -99,8 +146,10 @@ module roundedCubeEdge(r=2){
     }
 }
 
-translate([2.5,7,19]) ioBoard();
-translate([2.5,12,10]) mainBoard();
-translate([1,1,0]) bottomShell();
-translate([1,1,1]) carrierShell();
-%topShell();
+//translate([2.5,7,17]) ioBoard();
+//translate([2.5,12,5]) mainBoard();
+//translate([2.5,2,2]) connectorBoard();
+//translate([1,1,1]) carrierShell();
+//%topShell();
+mirror([0,0,1]);
+bottomShell();
