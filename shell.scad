@@ -1,3 +1,11 @@
+/*TODO
+- Schauen wie lang die Schrauben sind damit passende Löcher gemacht werden
+- Buttoncutouts hinzufügen mit Buttonerhöhung
+- connectorcutout hinzufügen
+- Displaycutout und wand hinzufügen
+- Halterungen für PCBs erstellen
+*/
+
 //connector-board
 module connectorBoard(height=6){
     $fn=100;
