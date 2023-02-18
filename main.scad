@@ -13,7 +13,7 @@ module connectorPCB(height=6){
 }
 
 //IO PCB dummy
-module ioPCB(height=6){
+module ioPCB(height=9){
     $fn=100;
     difference(){
         cube([35,42,height]);
@@ -25,7 +25,7 @@ module ioPCB(height=6){
 }
 
 //main PCB dummy
-module mainPCB(height=12){
+module mainPCB(height=14){
     $fn=100;
     difference(){
         cube([35,52,height]);
@@ -36,6 +36,8 @@ module mainPCB(height=12){
     }
 }
 
-shell();
+%shell();
+translate([2.5,7.5,10]) mainPCB();
+translate([2.5,7.5,24]) ioPCB();
 translate([1,1,1]) carrierPlate();
 translate([1,1,1]) mirror([0,0,1]) basePlate();
