@@ -42,19 +42,14 @@ module basePlate(){
     
     difference(){
         union(){
-            difference(){
-                translate([1,1,0]) hull(){
-                    cylinder(1,1,1);
-                    translate([width-2,0,0]) cylinder(1,1,1);
-                    translate([0,length-2,0]) cylinder(1,1,1);
-                    translate([width-2,length-2,0]) cylinder(1,1,1);
-                }
-                
-                //screw holes
-                translate([2.05,length-2.05,-0.3]) cylinder(1.4,1.1,2);
-                translate([2.05,2.05,-0.3]) cylinder(1.4,1.1,2);
-                translate([width-2.05,2.05,-0.3]) cylinder(1.4,1.1,2);
-                translate([width-2.05,length-2.05,-0.3]) cylinder(1.4,1.1,2);
+            //inner box
+            translate([9,length-32.65,1]) cube([20,30.65,4.1]);
+            
+            translate([1,1,0]) hull(){
+                cylinder(1,1,1);
+                translate([width-2,0,0]) cylinder(1,1,1);
+                translate([0,length-2,0]) cylinder(1,1,1);
+                translate([width-2,length-2,0]) cylinder(1,1,1);
             }
             
             translate([width/2,length-42.65,1]) moduleConnection();
@@ -62,6 +57,21 @@ module basePlate(){
         
         //connector cutout
         translate([8.5,length-42.65,-0.1]) cube([21,10,5.2]);
+        
+        //inner box cutout
+        translate([3.5,length-36.65,-0.1]) cube([31,24,2.1]);
+        
+        //screw holes
+        translate([width/2-7,length-4,-0.5]){
+            cylinder(1.5,1.1,2.2);
+            translate([0,0,1.5]) cylinder(5,2.2,2.2);
+        }
+        translate([4,4,-0.5]) cylinder(1.5,1.1,2.2);
+        translate([width-4,4,-0.5]) cylinder(1.5,1.1,2.2);
+        translate([width/2+7,length-4,-0.5]){
+            cylinder(1.5,1.1,2.2);
+            translate([0,0,1.5]) cylinder(5,2.2,2.2);
+        }
     }
 }
 
