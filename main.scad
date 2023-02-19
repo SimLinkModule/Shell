@@ -1,6 +1,7 @@
 use <basePlate.scad>
 use <carrierPlate.scad>
 use <shell.scad>
+use <connectorCarrier.scad>
 
 //connector PCB dummy
 module connectorPCB(height=6){
@@ -37,7 +38,10 @@ module mainPCB(height=14){
 }
 
 %shell();
-translate([2.5,7.5,10]) mainPCB();
-translate([2.5,7.5,24]) ioPCB();
+//translate([2.5,7.5,10]) mainPCB();
+//translate([2.5,7.5,24]) ioPCB();
 translate([1,1,1]) carrierPlate();
 translate([1,1,1]) mirror([0,0,1]) basePlate();
+translate([20,24,2]) connectorCarrier();
+
+translate([20,24,2]) mirror([1,0,0]) connectorCarrier();

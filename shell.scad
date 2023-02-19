@@ -9,16 +9,6 @@ module roundedCubeEdge(r=2){
     }
 }
 
-//cut cylinder for the main mounting holes
-module cylinder45Cut(r=3){
-    $fn=100;
-    boxHeight= sqrt(8*r*r);
-    difference(){
-        cylinder(2*r,r,r);
-        translate([r,-r,0]) rotate([0,315,0]) cube([2*r,2*r,boxHeight]);
-    }
-}
-
 //Button
 module Button(gapWidth=1, gapHeight=0.4, armWidth=9, buttonClickRadius=1, buttonClickHeight=2){
     $fn=100;
@@ -95,14 +85,24 @@ module shell(height=35){
             }
             
             //main screw mount body
-            translate([3,3,2]) cylinder(5,3,3);
-            translate([3,3,7]) rotate([0,0,45]) cylinder45Cut();
-            translate([width-3,3,2]) cylinder(5,3,3);
-            translate([width-3,3,7]) rotate([0,0,135]) cylinder45Cut();
-            translate([3,length-3,2]) cylinder(5,3,3);
-            translate([3,length-3,7]) rotate([0,0,315]) cylinder45Cut();
-            translate([width-3,length-3,2]) cylinder(5,3,3);
-            translate([width-3,length-3,7]) rotate([0,0,225]) cylinder45Cut();
+            translate([5,5,2]){
+                translate([-3,-3,0]) cube([3,6,6]);
+                translate([-3,-3,0]) cube([6,3,6]);
+                cylinder(6,3,3);
+            }
+            translate([width-5,5,2]){
+                translate([0,-3,0]) cube([3,6,6]);
+                translate([-3,-3,0]) cube([6,3,6]);
+                cylinder(6,3,3);
+            }
+            translate([width/2-7,length-5,2]){
+                translate([-3,0,0]) cube([6,3,6]);
+                cylinder(6,3,3);
+            }
+            translate([width/2+7,length-5,2]){
+                translate([-3,0,0]) cube([6,3,6]);
+                cylinder(6,3,3);
+            }
             
             //buttonparts
             translate([width/2,23,height-2]){
@@ -124,10 +124,10 @@ module shell(height=35){
             }
         }
         //main screw mount holes
-        translate([3,3,1.9]) cylinder(5.1,1.6,1.6);
-        translate([width-3,3,1.9]) cylinder(5.1,1.6,1.6);
-        translate([3,length-3,1.9]) cylinder(5.1,1.6,1.6);
-        translate([width-3,length-3,1.9]) cylinder(5.1,1.6,1.6);
+        translate([5,5,1.9]) cylinder(5.1,1.6,1.6);
+        translate([width-5,5,1.9]) cylinder(5.1,1.6,1.6);
+        translate([width/2-7,length-5,1.9]) cylinder(5.1,1.6,1.6);
+        translate([width/2+7,length-5,1.9]) cylinder(5.1,1.6,1.6);
         
         //io-pcb srew mount holes
         translate([width/2-14.2,23-8.38,height-7.1]){
