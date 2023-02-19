@@ -89,8 +89,8 @@ module shell(height=35){
                 }
                 
                 //cutout for the display
-                translate([width/2,34,height-2.1]){
-                    translate([-16,0,0]) cube([32,12.9,2.2]);
+                translate([width/2,35,height-2.1]){
+                    translate([-11,0,0]) cube([27,11,2.2]);
                 }
             }
             
@@ -119,8 +119,8 @@ module shell(height=35){
             }
             
             //body display cutout
-            translate([width/2,33,height-4]){
-                translate([-17,0,0]) cube([34,15,2]);
+            translate([width/2,34,height-4]){
+                translate([-12,0,0]) cube([29,13,2]);
             }
         }
         //main screw mount holes
@@ -138,8 +138,8 @@ module shell(height=35){
         }
         
         //hole display cutout
-        translate([width/2,34,height-4.1]){
-            translate([-16,0,0]) cube([32,12.9,2.2]);
+        translate([width/2,35,height-4.1]){
+            translate([-11,0,0]) cube([27,11,2.2]);
         }
     }
 }
