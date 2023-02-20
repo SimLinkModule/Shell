@@ -24,7 +24,7 @@ module connectorCarrier(){
             }
             
             //pcb holder pin
-            translate([12.2,14.35,-2]) cylinder(1.5,1,1);
+            translate([11.7,14.35,-2]) cylinder(1.5,1,1);
         }
         
         //arm holes
