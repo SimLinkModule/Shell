@@ -1,5 +1,7 @@
 # Shell
 
+![Parts](parts.png)
+
 ## Files
 
 - **basePlate.scad**: Contains the connector for the remote
