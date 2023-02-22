@@ -1,4 +1,4 @@
-//roundedCubeEdge --> eighth of a sphere
+//Rounded Edge for the main body
 module roundedCubeEdge(r=2){
     $fn=100;
     difference(){
@@ -9,7 +9,7 @@ module roundedCubeEdge(r=2){
     }
 }
 
-//Button
+//Case button
 module Button(gapWidth=1, gapHeight=0.4, armWidth=9, buttonClickRadius=1, buttonClickHeight=2){
     $fn=100;
     rampeWidth = (2-gapHeight)/tan(60);
@@ -23,7 +23,7 @@ module Button(gapWidth=1, gapHeight=0.4, armWidth=9, buttonClickRadius=1, button
     translate([0,-3,0]) cube([armWidth-2*rampeWidth-gapWidth,6,2]);
 }
 
-//cutout for the button
+//cutout for the case button
 module ButtonCutOut(armWidth=9){
     $fn=100;
     cylinder(2.2,5,5);
@@ -41,7 +41,7 @@ module rampe(height=2){
     }
 }
 
-//shell
+//main shell for the extension module
 module shell(height=35){
     length=66;
     width=40;
@@ -61,6 +61,7 @@ module shell(height=35){
                     translate([width-4,length-4,0]) cylinder(height-2,2,2);
                     translate([width-4,length-4,height-2]) rotate([0,0,0]) roundedCubeEdge();
                 }
+                
                 //innerskin
                 translate([2,2,-0.2]) cube([width-4,length-4,height-1.8]);
                 
@@ -78,7 +79,7 @@ module shell(height=35){
                     translate([9.47,0,0]) rotate([0,0,0]) ButtonCutOut(armWidth=8.53);
                 }
                 
-                //cutout for the display
+                //cutout for the display in the outer skin
                 translate([width/2,35,height-2.1]){
                     translate([-11,0,0]) cube([27,11,2.2]);
                 }
@@ -104,7 +105,7 @@ module shell(height=35){
                 cylinder(6,3,3);
             }
             
-            //buttonparts
+            //insert the two buttons
             translate([width/2,23,height-2]){
                 translate([-9.47,0,2]) rotate([0,0,180]) mirror([0,0,1]) Button(gapWidth=3, gapHeight=1, armWidth=8.53, buttonClickHeight=3, buttonClickRadius=1.25);
                 translate([9.47,0,2]) rotate([0,0,0]) mirror([0,0,1]) Button(gapWidth=3, gapHeight=1, armWidth=8.53, buttonClickHeight=3, buttonClickRadius=1.25);
@@ -112,13 +113,13 @@ module shell(height=35){
             
             //io-pcb srew mount body
             translate([width/2-14.2,23-8.38,height-7]){
-                cylinder(7,3,3);
+                cylinder(5,3,3);
                 translate([28.48,0,0]) cylinder(5,3,3);
                 translate([0,35.3,0]) cylinder(5,3,3);
                 translate([28.48,35.3,0]) cylinder(5,3,3);
             }
             
-            //body display cutout
+            //body for the display cutout
             translate([width/2,34,height-4]){
                 translate([-12,0,0]) cube([29,13,2]);
             }
@@ -137,7 +138,7 @@ module shell(height=35){
             translate([28.48,35.3,0]) cylinder(5.1,1.6,1.6);
         }
         
-        //hole display cutout
+        //display cutout in the extra display body
         translate([width/2,35,height-4.1]){
             translate([-11,0,0]) cube([27,11,2.2]);
         }

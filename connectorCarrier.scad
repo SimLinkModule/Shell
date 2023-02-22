@@ -1,11 +1,7 @@
-use <carrierPlate.scad>
-
-
-
+//attaches the connector pcb to the carrier plate
 module connectorCarrier(){
     $fn=100;
 
-    //translate([38/2,23,1])
     difference(){
         union(){
             //arm1
@@ -18,7 +14,7 @@ module connectorCarrier(){
             translate([7.3,26.2,4]) cube([6,5.3,2]);
             translate([7.3,26.2,-2]) cube([6,2,6]);
 
-            //arm connector part
+            //main body between the arms
             translate([0,0,-0.8]) linear_extrude(height = 6.8){
                 polygon([[11,7],[17,7],[13.3,26.2],[7.3,26.2]]);
             }
@@ -31,11 +27,10 @@ module connectorCarrier(){
         translate([14,0,3.9]) cylinder(2.2,1.1,1.1);
         translate([10.3,31.5,3.9]) cylinder(2.2,1.1,1.1);
         
-        //space for base
+        //cutout for the carrier plate
         translate([15,4.35,-1]) cube([3,24,1.2]);
     }
 }
 
 connectorCarrier();
 mirror([1,0,0]) connectorCarrier();
-//carrierPlate();

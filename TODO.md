@@ -1,6 +1,0 @@
-- [ ] PCB Mounts
-- [ ] Vielleicht muss ein Konstrukt erstellt werden wo mit einer Mutter und der Schraube das Connectorboard festgemacht wird am Case, damit es näher am boden des Cases ist
-- [ ] Cutout und Wand für das Display hinzufügen
-- [ ] Mainconnector Cutout hinzufügen
-- [ ] Buttoncutouts mit Butternerhöhung hinzufügen
-- [ ] Beachten wie lang die Schrauben sind, damit sie in die Löcher passen

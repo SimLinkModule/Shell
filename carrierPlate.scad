@@ -1,4 +1,4 @@
-//carrierPlate
+//plate that is used to attach the connector pcb and main pcb
 module carrierPlate(){
     length=64;
     width=38;
@@ -7,6 +7,7 @@ module carrierPlate(){
     difference(){
         union(){
             difference(){
+                //main body
                 translate([1,1,0]) hull(){
                     cylinder(1,1,1);
                     translate([width-2,0,0]) cylinder(1,1,1);

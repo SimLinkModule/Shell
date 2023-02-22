@@ -1,3 +1,4 @@
+//one side of the holder for the light module slot
 module moduleSlot(){
     cube([5,40.65,2]);
     //outerbarrier
@@ -28,13 +29,14 @@ module moduleSlot(){
     }
 }
 
+//u-shaped holder for the light module slot
 module moduleConnection(){
     translate([-15,40.65,0]) cube([30,2,4.1]);
     mirror([1,0,0]) translate([10,0,0]) moduleSlot();
     translate([10,0,0]) moduleSlot();
 }
 
-//basePlate
+//final base plate for the shell
 module basePlate(){
     length=64;
     width=38;
@@ -42,7 +44,7 @@ module basePlate(){
     
     difference(){
         union(){
-            //inner box
+            //box inside the light module holder
             translate([9,length-32.65,1]) cube([20,30.65,4.1]);
             
             translate([1,1,0]) hull(){
@@ -55,10 +57,10 @@ module basePlate(){
             translate([width/2,length-42.65,1]) moduleConnection();
         }
         
-        //connector cutout
+        //connector pins cutout
         translate([8.5,length-42.65,-0.1]) cube([21,10,5.2]);
         
-        //inner box cutout
+        //cutout for the connector pcb
         translate([3.5,length-36.65,-0.1]) cube([31,24,2.1]);
         
         //screw holes
